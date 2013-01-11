@@ -42,6 +42,6 @@ end
 action :update do
   execute "self-update-composer" do
     only_if "test -f #{new_resource.install_path}/composer.phar"
-    command "#{new_resource.install_path}/composer.phar -n --no-ansi -q self-update"
+    command "#{new_resource.install_path}/composer.phar -n --no-ansi self-update"
   end
 end
