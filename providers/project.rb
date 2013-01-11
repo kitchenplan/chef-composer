@@ -23,7 +23,7 @@ action :install do
     not_if "test -f #{new_resource.project_dir}/composer.lock"
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : ''
-    command "composer install -n --no-ansi #{dev}"
+    command "composer install -n -o --no-ansi #{dev}"
   end
 end
 action :update do
@@ -31,7 +31,7 @@ action :update do
     only_if "which composer >>/dev/null"
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : ''
-    command "composer update -n --no-ansi #{dev}"
+    command "composer update -n -o --no-ansi #{dev}"
   end
 end
 
@@ -40,6 +40,6 @@ action :dump_autoload do
     only_if "which composer >>/dev/null"
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : ''
-    command "composer update -n --no-ansi #{dev}"
+    command "composer update -n -o --no-ansi #{dev}"
   end
 end
