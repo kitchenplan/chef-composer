@@ -23,9 +23,10 @@ action :install do
     not_if "test -f #{new_resource.project_dir}/composer.lock"
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : "--no-dev"
+    prefer_source = new_resource.prefer_source ? "--prefer-source" : "--prefer-dist"
     user new_resource.run_as
     environment({"COMPOSER_HOME" => "/home/#{new_resource.run_as}/.composer"})
-    command "composer install -n --no-ansi #{dev}"
+    command "composer install -n #{prefer_source}--no-ansi #{dev}"
   end
 end
 action :update do
@@ -34,8 +35,9 @@ action :update do
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : "--no-dev"
     user new_resource.run_as
+    prefer_source = new_resource.prefer_source ? "--prefer-source" : "--prefer-dist"
     environment({"COMPOSER_HOME" => "/home/#{new_resource.run_as}/.composer"})
-    command "composer update -n --no-ansi #{dev}"
+    command "composer update -n #{prefer_source} --no-ansi #{dev}"
   end
 end
 
@@ -45,7 +47,8 @@ action :dump_autoload do
     cwd new_resource.project_dir
     dev = new_resource.dev ? "--dev" : "--no-dev"
     user new_resource.run_as
+    prefer_source = new_resource.prefer_source ? "--prefer-source" : "--prefer-dist"
     environment({"COMPOSER_HOME" => "/home/#{new_resource.run_as}/.composer"})
-    command "composer update -n --no-ansi #{dev}"
+    command "composer update -n #{prefer_source} --no-ansi #{dev}"
   end
 end
