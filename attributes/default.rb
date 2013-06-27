@@ -30,3 +30,10 @@ default[:composer][:sffolder] = "Symfony"
 default[:composer][:sfversion] = ""
 default[:composer][:sfuser] = "vagrant"
 default[:composer][:sfgroup] = "vagrant"
+
+case platform
+when "openbsd", "freebsd", "mac_os_x", "mac_os_x_server"
+  default[:composer][:home_path] = "/Users"
+else
+  default[:composer][:home_path] = "/home"
+end
