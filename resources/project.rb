@@ -27,3 +27,4 @@ attribute :install_path, :kind_of => [String, NilClass], :default => "/usr/local
 attribute :dev, :equal_to => [true, false], :default => false
 attribute :prefer_source, :equal_to => [true, false], :default => false
 attribute :run_as, :kind_of => String, :default => "vagrant"
+attribute :home_path, :kind_of => String, :default => "/home"
